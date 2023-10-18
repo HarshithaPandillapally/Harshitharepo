@@ -5,8 +5,8 @@ pipeline {
         stage('Checkout Source') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'GitHub-authentication', variable: 'GITHUB_PAT')]) {
-                        git url: 'https://HarshithaPandillapally:${GITHUB_PAT}@github.com/subhayandasguptaPwCGithub/kmc-devops.git', branch: 'feature/harshithap'
+                    withCredentials([string(credentialsId: 'PAT-H', variable: 'GITHUB_PAT')]) {
+                        git url: 'https://HarshithaPandillapally:${GITHUB_PAT}@github.com/HarshithaPandillapally/Harshitharepo.git', branch: 'main'
                     }
                 }
             }
