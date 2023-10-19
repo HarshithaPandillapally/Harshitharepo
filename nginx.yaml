@@ -1,3 +1,5 @@
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,3 +36,4 @@ spec:
   selector:
     app: web
   type: NodePort
+  clusterIP: 172.20.143.82  # Set the clusterIP to your Kubernetes cluster's API server address
