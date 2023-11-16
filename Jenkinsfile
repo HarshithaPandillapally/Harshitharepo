@@ -2,22 +2,36 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Source') {
+        stage('Checkout') {
             steps {
-                script {
-                    git credentialsId: 'my-github',
-                        url: 'https://github.com/HarshithaPandillapally/Harshitharepo.git',
-                        branch: 'main'
-                }
+                // Checkout the code from the Git repository
+                checkout scm
             }
         }
 
-        stage('Deploy App') {
+        stage('Build') {
             steps {
-                script {
-                    kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "master-node-1")
-                }
+                // Example build step (replace with your actual build command)
+                sh 'mvn clean install'
             }
+        }
+
+        stage('Test') {
+            steps {
+                // Example test step (replace with your actual test command)
+                sh 'mvn test'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded! Deploying to production...'
+            // Add deployment steps here
+        }
+        failure {
+            echo 'Pipeline failed! Notify the team...'
+            // Add notification or rollback steps here
         }
     }
 }
